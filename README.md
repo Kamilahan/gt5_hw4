@@ -1,1 +1,1 @@
-﻿# 5month's homework no.4 Love Calculator MVVM
+﻿# 5th month homework no.4 Love Calculator MVVM
