@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.gt.gt5_cw2_lovecalculator.databinding.ActivityMainBinding
+import com.gt.gt5_cw2_lovecalculator.remote.LoveModel
+import com.gt.gt5_cw2_lovecalculator.remote.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,6 +16,8 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
     //drgdfggdgdhtehshbdgb
     lateinit var binding:ActivityMainBinding
+
+    val viewModel:LoveViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,25 +30,12 @@ class MainActivity : AppCompatActivity() {
 //fdgnhdbgterdfvgbhngytf
 with(binding){
     btnGet.setOnClickListener {
-        RetrofitService.api.getPercentage(etFname.text.toString(),etSname.text.toString())
-            .enqueue(object : Callback<LoveModel> {
-                override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
+     viewModel.getLiveData(etFname.text.toString(),etSname.text.toString())
+         .observe(this@MainActivity,
+             Observer {loveModel->
+                 Log.e("ololo", "onCreate: $loveModel", )
+         })
 
-                    val intent=Intent(this@MainActivity, ResultActivity::class.java)
-                    intent.putExtra("result", response.body()?.result)
-                   intent.putExtra("percentage", response.body()?.percentage)
-                    startActivity(intent)
-
-
-
-                 Log.e("ololo", "onResponse: ${response.body()}",)
-                }
-
-                override fun onFailure(call: Call<LoveModel>, t: Throwable) {
-Log.e("ololo", "onFailure: ${t.message}")
-                }
-
-            })
     }
 }
     }

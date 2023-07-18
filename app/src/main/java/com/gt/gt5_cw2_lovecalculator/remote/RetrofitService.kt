@@ -1,4 +1,4 @@
-package com.gt.gt5_cw2_lovecalculator
+package com.gt.gt5_cw2_lovecalculator.remote
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -1,4 +1,4 @@
-package com.gt.gt5_cw2_lovecalculator
+package com.gt.gt5_cw2_lovecalculator.remote
 
 import com.google.gson.annotations.SerializedName
 
